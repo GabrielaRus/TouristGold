@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "167743254331",
+    "firebase_url": "https://touristgold-23eee.firebaseio.com",
+    "project_id": "touristgold-23eee",
+    "storage_bucket": "touristgold-23eee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167743254331:android:8ae28c60fbf430fc",
+        "android_client_info": {
+          "package_name": "com.example.gabriella.touristgold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167743254331-ev97ku8950efith4l3hlj5ishrohfuos.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gabriella.touristgold",
+            "certificate_hash": "0dbcd9326b245e97ef09851ce60c548a8648c91c"
+          }
+        },
+        {
+          "client_id": "167743254331-hs80ja56ia0eki3jmu6tmvdgcrautett.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLV5Uin-s2MYpGJQqGjxuvwnPTloFv3kw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167743254331-hs80ja56ia0eki3jmu6tmvdgcrautett.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
