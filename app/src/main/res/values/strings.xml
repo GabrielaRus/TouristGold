@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TouristGold</string>
+
+    <string name="welcome">Welcome Tourist Gold</string>
+    <string name="welcome_text">You\'re lucky to be a tourist. Run the app &amp; roll on! Keep going &amp; find all the city\'s
+        treasures. Always remember to take awesome photos. \nGood luck and hav\' fun!</string>
+    <string name="ready">I\'m ready</string>
 </resources>

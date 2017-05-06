@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text dimensions -->
+    <dimen name="normal_text_size">20sp</dimen>
+    <dimen name="header_text">25sp</dimen>
+
+    <!-- Welcome Screen -->
+    <dimen name="padding">24dp</dimen>
+    <dimen name="margin_top_description">10dp</dimen>
+</resources>
