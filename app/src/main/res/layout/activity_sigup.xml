@@ -109,6 +109,14 @@
 
         </RelativeLayout>
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone" />
+
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>

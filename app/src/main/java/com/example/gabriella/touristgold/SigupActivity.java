@@ -1,5 +1,6 @@
 package com.example.gabriella.touristgold;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +12,14 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +29,9 @@ public class SigupActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private TextInputLayout emailWrapper, passwordWrapper;
     private Button singUpBtn;
+    private ProgressBar progressBar;
+
+    private FirebaseAuth auth;
 
     //Constants
     private static final String PASSWORD_PATTERN = "^((?=.*\\d)(?=.*[a-zA-Z])(?=.*[@#$%])(?=\\S+$).{6,20})$";
@@ -30,6 +40,10 @@ public class SigupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sigup);
 
+        //Get Firebase auth instance
+        auth = FirebaseAuth.getInstance();
+
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         inputEmail = (EditText) findViewById(R.id.email_input);
         inputPassword = (EditText) findViewById(R.id.password_input);
         emailWrapper = (TextInputLayout) findViewById(R.id.email_wrapper);
@@ -38,8 +52,23 @@ public class SigupActivity extends AppCompatActivity {
         singUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = inputEmail.getText().toString().trim();
+                String password = inputPassword.getText().toString().trim();
                 if ((validateEmail() && validatePassword()) || (validatePassword() && validateEmail())) {
-                    Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.VISIBLE);
+                    auth.createUserWithEmailAndPassword(email,password)
+                            .addOnCompleteListener(SigupActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Toast.makeText(SigupActivity.this,"createUserWithEmail:onCompleate:"+task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                                    progressBar.setVisibility(View.GONE);
+                                    if(!task.isSuccessful()){
+                                        Toast.makeText(SigupActivity.this,"Authentication failed. "+task.getException(),Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(SigupActivity.this,"Authentication succeed",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 }
             }
         });
@@ -137,7 +166,7 @@ public class SigupActivity extends AppCompatActivity {
     }
 
     /**
-     * Methode for password validation
+     * Method for password validation
      * A valid must contains 6-20 characters: at least one special character(@,#,$,%), at least one digit and any alphabets
      * from A-Z,a-z and not space
      *
